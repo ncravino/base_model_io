@@ -58,7 +58,8 @@ TestToml.from_toml("./some.toml")
 
 #### Use the TOML writer 
 ```
-TestToml.to_toml("./some_other.toml")
+my_toml_model_instance = TestToml(...)
+my_toml_model_instance.to_toml("./some_other.toml")
 ```
 
 ### YAML
@@ -70,4 +71,6 @@ TestYaml.from_yaml("./some.yaml")
 
 #### Use the YAML writer 
 ```
-TestYaml.to_yaml("./some_other.yaml")
+my_toml_model_instance = TestYaml(...)
+my_yaml_model_instance.to_yaml("./some_other.yaml")
+```
