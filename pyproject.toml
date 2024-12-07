@@ -1,0 +1,61 @@
+[project]
+name="toml_base_model"
+version="0.1.0"
+description="Simple pydantic BaseModels extended with a model loader and dumper for YAML and TOML"
+authors=[{ name="Nuno Cravino", email="ncravino@users.noreply.github.com" }]
+dependencies=["pydantic>=2.10.3", "tomli>=2.2.1", "tomli-w>=1.1.0", "pyyaml>=6.0.2"]
+requires-python=">=3.10"
+readme="README.md"
+license={ text="MIT" }
+
+[build-system]
+requires=["pdm-backend"]
+build-backend="pdm.backend"
+
+[dependency-groups]
+dev=['pytest']
+
+docs=['mkdocs', 'mkdocstrings', 'mkdocstrings-python']
+
+linting=['ruff']
+
+typechecking=['pyright']
+
+all=[
+    { include-group='dev' },
+    { include-group='docs' },
+    { include-group='linting' },
+    { include-group='typechecking' },
+]
+
+[tool.pdm]
+distribution=true
+
+[tool.ruff]
+line-length=100
+target-version='py310'
+
+[tool.ruff.lint]
+select=[
+    'I',   # isort
+    'A',   # flake8-builtins
+    'N',   # pep8-naming
+    'D',   # pydocstyle
+    'E',   # pycodestyle (Error)
+    'YTT', # flake8-2020
+    'B',   # flake8-bugbear
+    'T10', # flake8-debugger
+    'T20', # flake8-print
+    'C4',  # flake8-comprehensions
+]
+
+ignore=[
+    "D203", #0ne-blank-line-before-class
+    "D213", #multi-line-summary-second-line
+]
+
+[tool.pdm.scripts]
+# format source and tests
+# ruff check source 
+# pyright source
+checkfix = "bash -c 'ruff format ./ && ruff check ./src --fix && pyright --level error --threads 2'"
