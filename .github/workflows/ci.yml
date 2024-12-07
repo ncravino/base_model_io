@@ -20,6 +20,27 @@ permissions:
 
 jobs:
 
+  linttype:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Setup PDM
+        uses: pdm-project/setup-pdm@v4
+      - name: Install all dependency groups
+        run: pdm install -G linting -G typechecking -G dev
+
+      - name: Run Tests
+        run: |
+          pdm run check
+
   tests:
     runs-on: ubuntu-latest
     defaults:
