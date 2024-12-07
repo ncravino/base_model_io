@@ -32,10 +32,15 @@ class Section2(BaseModel):
 class Section3(BaseModel):
     list_of_lists: list[list[Any]]
 
-# We can inherit just from:
-# TomlBaseModel for TOML
-# YamlBaseModel for YAML
-class TestToml(base_model_io.TomlBaseModel, base_model_io.YamlBaseModel):
+class TestToml(base_model_io.TomlBaseModel):
+    some_title: str
+    some_int: int
+    some_float: float
+    section1: Section1
+    section2: dict[str, Section2]
+    section3: Section3
+
+class TestYaml(base_model_io.YamlBaseModel):
     some_title: str
     some_int: int
     some_float: float
