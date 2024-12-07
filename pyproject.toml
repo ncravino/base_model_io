@@ -59,3 +59,4 @@ ignore=[
 # ruff check source 
 # pyright source
 checkfix = "bash -c 'ruff format ./ && ruff check ./src --fix && pyright --level error --threads 2'"
+check = "bash -c 'ruff check ./src && pyright --level error --threads 2'"
